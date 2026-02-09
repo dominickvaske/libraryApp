@@ -7,11 +7,49 @@
 	<title>Library App</title>
 </head>
 <body>
-	<div class="library">
-		<!-- My Books -->
+	<header class="siteHeader">
+		<h1>My Library</h1>
+		<div class="headerActions">
+			<button id="addBookBtn" class="btn primary">Add Book</button>
+		</div>
+	</header>
+
+	<main>
+		<section class="libraryContainer">
+			<div id="library" class="library">
+				<!-- Book cards will be injected here -->
+			</div>
+		</section>
+	</main>
+
+	<!-- Add Book Modal (hidden by default) -->
+	<div id="bookFormModal" class="modal" aria-hidden="true">
+		<div class="modalContent">
+			<form id="bookForm" class="bookForm">
+				<h2>Add New Book</h2>
+				<label>Title
+					<input name="title" type="text" required>
+				</label>
+				<label>Author
+					<input name="author" type="text" required>
+				</label>
+				<label>Pages
+					<input name="pages" type="number" min="1">
+				</label>
+				<label>Read
+					<select name="read">
+						<option value="false">Not read</option>
+						<option value="true">Read</option>
+					</select>
+				</label>
+				<div class="formActions">
+					<button type="submit" class="btn primary">Save</button>
+					<button type="button" id="cancelBtn" class="btn">Cancel</button>
+				</div>
+			</form>
+		</div>
 	</div>
 
-	<!-- Javascript link -->
 	<script src="app.js"></script>
 </body>
 </html>
