@@ -33,7 +33,19 @@ function displayBooks() {
 		const bookCard = document.createElement("div");
 		bookCard.classList.add("bookCard");
 
+		const checkbox = document.createElement("input");
+		checkbox.type = 'checkbox';
+		checkbox.class = 'checkbox';
+		checkbox.name = 'myCheckbox';
+
+		const label = document.createElement('label');
+		label.htmlFor = 'myCheckbox';
+		label.appendChild(document.createTextNode("Read?"));
+		label.appendChild(checkbox);
+
 		bookCard.textContent = `${book.name} by ${book.author} (${book.length} pages)`
+		bookCard.appendChild(label);
+		// bookCard.appendChild(checkbox);
 		docLibrary.appendChild(bookCard);
 	}
 }
