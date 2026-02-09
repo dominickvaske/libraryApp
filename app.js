@@ -1,5 +1,6 @@
 const myLibrary = [];
 const docLibrary = document.querySelector(".library");
+const addBtn = document.querySelector("#addBookBtn");
 
 function Book(name, author, length) {
 	this.id = crypto.randomUUID();
@@ -49,6 +50,13 @@ function displayBooks() {
 		docLibrary.appendChild(bookCard);
 	}
 }
+
+addBtn.addEventListener("click", () => {
+	const form = document.querySelector(".modal");
+
+	form.setAttribute("aria-hidden", "false");
+});
+
 
 const book1 = addBookToLibrary("The Way of Kings", "Brandon Sanderson", 1100);
 const book2 = addBookToLibrary("The Sorcerer's Stone", "JK Rowling", 300);
