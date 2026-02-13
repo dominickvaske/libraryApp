@@ -2,6 +2,9 @@ const myLibrary = [];
 const docLibrary = document.querySelector(".library");
 const addBtn = document.querySelector("#addBookBtn");
 const cancelBtn = document.querySelector("#cancelBtn");
+const form = document.querySelector("#bookForm");
+const formModal = document.querySelector(".modal");
+
 
 function Book(name, author, length) {
 	this.id = crypto.randomUUID();
@@ -53,15 +56,29 @@ function displayBooks() {
 }
 
 addBtn.addEventListener("click", () => {
-	const form = document.querySelector(".modal");
-
-	form.setAttribute("aria-hidden", "false");
+	formModal.setAttribute("aria-hidden", "false");
 });
 
 cancelBtn.addEventListener("click", ()=> {
-	const form = document.querySelector(".modal");
-	form.setAttribute("aria-hidden", "true");
-})
+	formModal.setAttribute("aria-hidden", "true");
+});
+
+form.addEventListener("submit", (event) => {
+	event.preventDefault();
+
+	const data = new FormData(event.target);
+
+	const entries = Object.fromEntries(data.entries());
+
+	addBtn.focus();
+
+	// console.log(data.get('title'));
+	addBookToLibrary(data.get('title'), data.get('author'), data.get('pages'));
+	event.target.reset();
+
+	formModal.setAttribute("aria-hidden", "true");
+	displayBooks();
+});
 
 
 const book1 = addBookToLibrary("The Way of Kings", "Brandon Sanderson", 1100);
