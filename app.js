@@ -14,11 +14,6 @@ function Book(name, author, length) {
 };
 
 // Function to add books to library log
-// TODO:
-// 1. create document elements for name, author, length
-// 	from form in page
-// 2. figure out how to link form submission to event listener
-//	to fill out values for input below and call addBookToLibrary
 function addBookToLibrary(name, author, length) {
 	const newBook = new Book(name, author, length);
 
@@ -37,10 +32,15 @@ function displayBooks() {
 
 		const bookCard = document.createElement("div");
 		bookCard.classList.add("bookCard");
+		bookCard.setAttribute("data-id", book.id); // Add data attribute for easy lookup
+
+		const bookInfo = document.createElement("div");
+		bookInfo.classList.add("bookInfo");
+		bookInfo.textContent = `${book.name} by ${book.author} (${book.length} pages)`;
 
 		const checkbox = document.createElement("input");
 		checkbox.type = 'checkbox';
-		checkbox.class = 'checkbox';
+		checkbox.classList.add('checkbox');
 		checkbox.name = 'myCheckbox';
 
 		const label = document.createElement('label');
@@ -48,10 +48,30 @@ function displayBooks() {
 		label.appendChild(document.createTextNode("Read?"));
 		label.appendChild(checkbox);
 
-		bookCard.textContent = `${book.name} by ${book.author} (${book.length} pages)`
+		// Create delete button
+		const deleteBtn = document.createElement("button");
+		deleteBtn.classList.add("deleteBtn");
+		deleteBtn.textContent = "×";
+		deleteBtn.setAttribute("aria-label", "Delete book");
+		
+		// Add click handler to delete button
+		deleteBtn.addEventListener("click", () => {
+			removeBook(book.id);
+		});
+
+		bookCard.appendChild(bookInfo);
 		bookCard.appendChild(label);
-		// bookCard.appendChild(checkbox);
+		bookCard.appendChild(deleteBtn);
 		docLibrary.appendChild(bookCard);
+	}
+}
+
+// Function to remove book from library
+function removeBook(bookId) {
+	const index = myLibrary.findIndex(book => book.id === bookId);
+	if (index > -1) {
+		myLibrary.splice(index, 1);
+		displayBooks(); // Re-render the library
 	}
 }
 
