@@ -2,9 +2,7 @@
 
 A simple library management application that allows users to track their book collection. Built with vanilla JavaScript as part of The Odin Project curriculum.
 
-##Live Link 
-
-https://dominickvaske.github.io/libraryApp/
+## Live Link: https://dominickvaske.github.io/libraryApp/
 
 ## Features
 
